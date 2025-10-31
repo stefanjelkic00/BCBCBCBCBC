@@ -1,0 +1,130 @@
+name: Bee IT SFCC Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to (development/staging)'
+        required: true
+        default: 'development'
+      hostname:
+        description: 'Target SFCC instance hostname'
+        required: true
+
+  push:
+    branches:
+      - develop
+      - master
+      - release/*
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: RefArch
+
+    env:
+      SFCC_CLIENT_ID: ${{ secrets.SFCC_CLIENT_ID }}
+      SFCC_CLIENT_SECRET: ${{ secrets.SFCC_CLIENT_SECRET }}
+      CERT_PASSPHRASE: ${{ secrets.SFCC_CERT_PASSPHRASE }}
+      HOSTNAME: >-
+        ${{ github.event_name == 'workflow_dispatch'
+            && github.event.inputs.hostname
+            || github.ref_name == 'develop' && secrets.SFCC_HOSTNAME_DEVELOPMENT
+            || (startsWith(github.ref_name, 'release/') || github.ref_name == 'master') && secrets.SFCC_HOSTNAME_STAGING }}
+      ENVIRONMENT: >-
+        ${{ github.event_name == 'workflow_dispatch'
+            && github.event.inputs.environment
+            || github.ref_name == 'develop' && 'development'
+            || (startsWith(github.ref_name, 'release/') || github.ref_name == 'master') && 'staging' }}
+
+    steps:
+      - name: Checkout Code and Submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Initialize Git Submodules
+        run: git submodule update --init --recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 24.3.0
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Compile Assets
+        run: npm run compile
+
+      - name: Generate Code Version Name
+        id: version
+        run: |
+          VERSION="build-${{ github.run_number }}"
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Package Cartridges (Exclude node_modules)
+        run: |
+          CODE_VERSION=${{ steps.version.outputs.VERSION }}
+          mkdir -p build/$CODE_VERSION
+
+          find . -type d -name "cartridges" | while read -r cartridges_folder; do
+            echo "Found cartridges folder: $cartridges_folder"
+            for cartridge_dir in "$cartridges_folder"/*; do
+                if [ -d "$cartridge_dir" ]; then
+                  cartridge_name=$(basename "$cartridge_dir")
+                  echo "Copying cartridge: $cartridge_name"
+                  rsync -a --exclude='node_modules' "$cartridge_dir/" "build/$CODE_VERSION/$cartridge_name/"
+                fi
+            done
+          done
+
+          cd build
+          zip -r "$CODE_VERSION.zip" "$CODE_VERSION"
+
+      - name: Upload ZIP Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sfcc-code-package
+          path: build/${{ steps.version.outputs.VERSION }}.zip
+
+      - name: Use .p12 certificate from repo (for staging)
+        if: env.ENVIRONMENT == 'staging'
+        run: cp cert/cert_beeit.p12 ./cert.p12
+
+      - name: Environemt variables
+        run: |
+          echo "SFCC_CLIENT_ID=${{ secrets.SFCC_CLIENT_ID }}" | sed 's/./& /g'
+          echo "SFCC_CLIENT_SECRET=${{ secrets.SFCC_CLIENT_SECRET }}" | sed 's/./& /g'
+          echo "CERT_PASSPHRASE=${{ secrets.SFCC_CERT_PASSPHRASE }}" | sed 's/./& /g'
+          echo "HOSTNAME=${{ env.HOSTNAME }}" | sed 's/./& /g'
+          echo "ENVIRONMENT=${{ env.ENVIRONMENT }}" | sed 's/./& /g'
+
+      - name: Deploy Code
+        run: |
+          cd build
+          CODE_VERSION=${{ steps.version.outputs.VERSION }}
+          echo "Deploying code version: $CODE_VERSION"
+
+          npx sfcc-ci client:auth $SFCC_CLIENT_ID $SFCC_CLIENT_SECRET || (echo "Auth failed" && exit 1)
+
+          if [[ "$ENVIRONMENT" == "staging" ]]; then
+            echo "Deploying to staging with certificate..."
+            npx sfcc-ci code:deploy "$CODE_VERSION.zip" -i "$HOSTNAME" -c ../cert.p12 -p "$CERT_PASSPHRASE" --debug || (echo "Deployment failed" && exit 1)
+            echo "Staging deployment complete. Please activate code version '$CODE_VERSION' manually."
+          else
+            echo "Deploying to development..."
+            npx sfcc-ci code:deploy "$CODE_VERSION.zip" -i "$HOSTNAME" --debug || (echo "Deployment failed" && exit 1)
+            if [[ "$GITHUB_REF_NAME" == "develop" ]]; then
+              echo "Activating code version..."
+              npx sfcc-ci code:activate "$CODE_VERSION" -i "$HOSTNAME"
+            else
+              echo "Skipping activation for non-develop branch."
+            fi
+          fi
+
+          echo "Logging out..."
+          npx sfcc-ci auth:logout
+
+      - name: Cleanup
+        run: rm -rf build cert.p12 || true

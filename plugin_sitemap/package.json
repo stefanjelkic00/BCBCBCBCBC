@@ -1,0 +1,27 @@
+{
+  "name": "plugin_sitemaps",
+  "version": "7.0.1",
+  "description": "New overlay cartridge",
+  "main": "index.js",
+  "scripts": {
+    "lint": "sgmf-scripts --lint js",
+    "upload": "sgmf-scripts --upload ",
+    "uploadCartridge": "sgmf-scripts --uploadCartridge plugin_sitemap",
+    "watch": "sgmf-scripts --watch",
+    "build": "echo \"Nothing to compile plugin_sitemap\""
+  },
+  "author": "Alex Clark <alex.clark@salesforce.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.0",
+    "sgmf-scripts": "^3.0.0",
+    "stylelint": "^15.4.0",
+    "stylelint-config-standard-scss": "^11.0.0"
+  },
+  "paths": {
+    "base": "../storefront-reference-architecture/cartridges/app_storefront_base/"
+  }
+}

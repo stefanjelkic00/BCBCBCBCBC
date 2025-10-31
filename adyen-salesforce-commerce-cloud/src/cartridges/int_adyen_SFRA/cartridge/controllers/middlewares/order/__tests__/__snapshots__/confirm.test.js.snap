@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Confirm should set view data 1`] = `
+[MockFunction] {
+  "calls": [
+    [
+      {
+        "adyen": {
+          "adyenGivingAvailable": true,
+          "bannerUrl": "mocked_banner_url",
+          "clientKey": "mocked_client_key",
+          "donationProperties": "{"currency":"EUR","values":[10,20,30]}",
+          "environment": "test",
+          "logoUrl": "mocked_logo_url",
+          "nonprofitDescription": "mocked_description",
+          "nonprofitName": "mocked_nonprofit",
+          "nonprofitUrl": "mocked_url",
+          "orderToken": "mocked_token",
+          "termsAndConditionsUrl": "mocked_terms_url",
+        },
+      },
+    ],
+  ],
+  "results": [
+    {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

@@ -1,0 +1,1 @@
+<a href="${URLUtils.url('Account-DeleteData')}" class="btn btn-outline-primary" role="button" aria-pressed="true">${Resource.msg('account.gdpr.deletedata.label', 'account', null)}</a>

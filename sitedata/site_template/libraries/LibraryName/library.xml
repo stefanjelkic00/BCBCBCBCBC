@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.demandware.com/xml/impex/library/2006-10-31" library-id="LibraryName">
+    <folder folder-id="root">
+        <online-flag>true</online-flag>
+        <page-attributes />
+        <refinement-definitions />
+    </folder>
+
+    <content content-id="footer-locate-store">
+        <display-name xml:lang="x-default">Footer Locate Store</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;a href="$httpsURL('Stores-Find', 'showMap', true, 'horizontalView', true, 'isForm', true)$" class="menu-footer locate-store"&gt;&lt;h2&gt;Locate Store&lt;/h2&gt;&lt;/a&gt;&#13;
+                &lt;span class="content"&gt;The Store Locator is designed to help you find the closest store near you.&lt;/span&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+        <content content-id="footer-account">
+        <display-name xml:lang="x-default">Footer Account Links</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;div&gt;&lt;button class="title btn text-left btn-block d-sm-none" aria-expanded="false" aria-controls="collapsible-account"&gt;Account&lt;/button&gt;&lt;h2 class="title d-none d-sm-block"&gt;Account&lt;/h2&gt;&lt;/div&gt;&#13;
+                &lt;ul id="collapsible-account"class="menu-footer content"&gt;&#13;
+                &lt;li&gt;&lt;a href="$httpsURL('Account-Show')$" title="Go to My Account"&gt;My Account&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="$httpsURL('Order-History')$" title="Go to Check Order"&gt;Check Order&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;!-- &lt;li&gt;&lt;a href="$httpsURL('Wishlist-Search')$" title="Go to Wishlist"&gt;Find a Wishlist&lt;/a&gt;&lt;/li&gt; --&gt;&#13;
+                &lt;!-- &lt;li&gt;&lt;a href="$httpsURL('GiftRegistry-Landing')$" title="Go to Gift Registry"&gt;Gift Registry&lt;/a&gt;&lt;/li&gt; --&gt;&#13;
+                &lt;/ul&gt;&lt;!-- END: footer-account --&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+    <content content-id="footer-copy">
+        <display-name xml:lang="x-default">Footer Copyright</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;div class="copyright"&gt;&amp;copy; 2004-2024 Salesforce. All Rights Reserved.&lt;/div&gt;&#13;
+                &lt;div class="postscript"&gt;This is a demo store only. Orders made will NOT be processed.&lt;/div&gt;&#13;
+		&lt;!-- SFRA 7.0.1 --&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+    <content content-id="footer-support">
+        <display-name xml:lang="x-default">Footer Support Links</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;div&gt;&lt;button class="title btn text-left btn-block d-sm-none" aria-expanded="false" aria-controls="collapsible-customer-service"&gt;Customer Service&lt;/button&gt;&lt;h2 class="title d-none d-sm-block"&gt;Customer Service&lt;/h2&gt;&lt;/div&gt;&#13;
+                &lt;ul id="collapsible-customer-service"class="menu-footer content"&gt;&#13;
+                &lt;li&gt;&lt;a href="$httpsURL('ContactUs-Landing')$" title="Go to Contact Us"&gt;Contact Us&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="#" title="Go to Gift Certificates"&gt;Gift Certificates&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="#" title="Go to Help"&gt;Help&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="#" title="Go to Site Map"&gt;Site Map&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;/ul&gt;&lt;!-- END: footer_support --&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+    <content content-id="footer-about">
+        <display-name xml:lang="x-default">Footer About Links</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;div&gt;&lt;button class="title btn text-left btn-block d-sm-none" aria-expanded="false" aria-controls="collapsible-about"&gt;About&lt;/button&gt;&lt;h2 class="title d-none d-sm-block"&gt;About&lt;/h2&gt;&lt;/div&gt;&#13;
+                &lt;ul id="collapsible-about"class="menu-footer content"&gt;&#13;
+                &lt;li&gt;&lt;a href="$url('Page-Show', 'cid', 'about-us')$" title="Go to About Us"&gt;About Us&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="$url('Page-Show', 'cid', 'privacy-policy')$" title="Go to Privacy"&gt;Privacy&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="$url('Page-Show', 'cid', 'terms')$" title="Go to Terms"&gt;Terms&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;li&gt;&lt;a href="$url('Page-Show', 'cid', 'jobs-landing')$" title="Go to Jobs"&gt;Jobs&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;/ul&gt;&lt;!-- END: footer_about --&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+    <content content-id="home-product-tile-content">
+        <display-name xml:lang="x-default">Home page product tiles</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;a href="$url('Search-Show','cgid','newarrivals')$"&gt;&#13;
+&lt;span class="largeText"&gt;Styles to Love&lt;/span&gt;&#13;
+&lt;br /&gt;&#13;
+&lt;span&gt;Only Online&lt;/span&gt;&#13;
+&lt;/a&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+    <content content-id="0da176396df51e828ecf3482d4">
+        <type>component.commerce_layouts.mobileGrid1r1c</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{ }</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+        <content-links>
+            <content-link content-id="6e81c75c3d02029ecc387a67d2" type="component.commerce_layouts.mobileGrid1r1c.column1">
+                <position>0.0</position>
+            </content-link>
+            <content-link content-id="11497ba6d6c8aefc224ebc337c" type="component.commerce_layouts.mobileGrid1r1c.column1">
+                <position>1.0</position>
+            </content-link>
+            <content-link content-id="1564ac3bd8e4e0c9232f8b3996" type="component.commerce_layouts.mobileGrid1r1c.column1">
+                <position>2.0</position>
+            </content-link>
+            <content-link content-id="72333d2eaead5cf20955162899" type="component.commerce_layouts.mobileGrid1r1c.column1">
+                <position>3.0</position>
+            </content-link>
+            <content-link content-id="1b33900dd77ad5777deca562b1" type="component.commerce_layouts.mobileGrid1r1c.column1">
+                <position>4.0</position>
+            </content-link>
+        </content-links>
+    </content>
+
+    <content content-id="11497ba6d6c8aefc224ebc337c">
+        <type>component.commerce_layouts.mobileGrid1r1c</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{ }</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+        <content-links>
+            <content-link content-id="a411f8e91f7d4f23d34f525550" type="component.commerce_layouts.mobileGrid1r1c.column1">
+                <position>0.0</position>
+            </content-link>
+        </content-links>
+    </content>
+
+    <content content-id="11cc4eb605493631f2eb188377">
+        <type>component.commerce_assets.popularCategory</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "image" : {
+    "path" : "/images/homepage/homepage-3/small.jpg",
+    "focal_point" : {
+      "x" : 0.39,
+      "y" : 0.86
+    },
+    "meta_data" : {
+      "height" : 256,
+      "width" : 550
+    }
+  },
+  "offset" : null,
+  "catDisplayName" : "Suits",
+  "imagesize" : "500px 500px",
+  "category" : "mens-clothing-suits"
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="1564ac3bd8e4e0c9232f8b3996">
+        <type>component.commerce_layouts.popularCategories</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "textHeadline" : "Popular Categories"
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+        <content-links>
+            <content-link content-id="11cc4eb605493631f2eb188377" type="component.commerce_layouts.popularCategories.categories">
+                <position>0.0</position>
+            </content-link>
+            <content-link content-id="fb33853497ea6ddd04695b9c11" type="component.commerce_layouts.popularCategories.categories">
+                <position>1.0</position>
+            </content-link>
+            <content-link content-id="415b6131184015a5a61509fea7" type="component.commerce_layouts.popularCategories.categories">
+                <position>2.0</position>
+            </content-link>
+        </content-links>
+    </content>
+
+    <content content-id="1b33900dd77ad5777deca562b1">
+        <type>component.commerce_layouts.mobileGridLookBook</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{ }</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+        <content-links>
+            <content-link content-id="67b1f57245ff6e348037d6dd7a" type="component.commerce_layouts.mobileGridLookBook.column1">
+                <position>0.0</position>
+            </content-link>
+            <content-link content-id="b481e93d261eb83d4a1b2c2ca6" type="component.commerce_layouts.mobileGridLookBook.column2">
+                <position>0.0</position>
+            </content-link>
+            <content-link content-id="46db2eb9e941b85edcc3872973" type="component.commerce_layouts.mobileGridLookBook.column3">
+                <position>0.0</position>
+            </content-link>
+        </content-links>
+    </content>
+
+    <content content-id="415b6131184015a5a61509fea7">
+        <type>component.commerce_assets.popularCategory</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "image" : {
+    "path" : "/images/homepage/homepage-6/small.jpg",
+    "focal_point" : {
+      "x" : 0.5,
+      "y" : 0.71
+    },
+    "meta_data" : {
+      "height" : 254,
+      "width" : 544
+    }
+  },
+  "offset" : null,
+  "catDisplayName" : "Accessories",
+  "imagesize" : "500px 500px",
+  "category" : "womens-jewelry"
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="46db2eb9e941b85edcc3872973">
+        <type>component.commerce_assets.shopTheLook</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "product" : "25642436M",
+  "priceDisplay" : true
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="67b1f57245ff6e348037d6dd7a">
+        <type>component.commerce_assets.shopTheLook</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "product" : "spring-lookM",
+  "priceDisplay" : false
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="6e81c75c3d02029ecc387a67d2">
+        <type>component.commerce_assets.imageAndText</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "ITCLink" : null,
+  "ITCText" : null,
+  "image" : {
+    "path" : "/images/homepage/homepage-4/large.jpg",
+    "focal_point" : {
+      "x" : 0.5,
+      "y" : 0.5
+    },
+    "meta_data" : {
+      "height" : 715,
+      "width" : 2783
+    }
+  },
+  "heading" : null,
+  "alt" : null
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="72333d2eaead5cf20955162899">
+        <type>component.commerce_assets.editorialRichText</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "richText" : "&lt;h3&gt;Shop The Look&lt;/h3&gt;"
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="a411f8e91f7d4f23d34f525550">
+        <type>component.commerce_assets.campaignBanner</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "bannerMessage" : "&lt;p&gt;Promo Banner Example&lt;/p&gt;"
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="b481e93d261eb83d4a1b2c2ca6">
+        <type>component.commerce_assets.shopTheLook</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "product" : "25695441M",
+  "priceDisplay" : false
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="fb33853497ea6ddd04695b9c11">
+        <type>component.commerce_assets.popularCategory</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <data xml:lang="x-default">{
+  "image" : {
+    "path" : "/images/homepage/car-dresses.jpg",
+    "focal_point" : {
+      "x" : 0.21,
+      "y" : 0.44
+    },
+    "meta_data" : {
+      "height" : 600,
+      "width" : 2200
+    }
+  },
+  "offset" : null,
+  "catDisplayName" : "Dresses",
+  "imagesize" : "50px 50px",
+  "category" : "womens-clothing-dresses"
+}</data>
+        <online-flag>true</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <page-attributes/>
+    </content>
+
+    <content content-id="homepage">
+        <display-name xml:lang="x-default">homepage</display-name>
+        <type>page.storePage</type>
+        <config>{
+  "visibility" : [ ]
+}</config>
+        <visibility-mode xml:lang="x-default">visible</visibility-mode>
+        <data xml:lang="x-default">{ }</data>
+        <online-flag>false</online-flag>
+        <online-flag site-id="SiteName">true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <searchable-flag site-id="SiteName">false</searchable-flag>
+        <page-attributes>
+            <page-title xml:lang="x-default">Homepage for everyone</page-title>
+            <page-description xml:lang="x-default">Homepage for everyone</page-description>
+        </page-attributes>
+        <content-links>
+            <content-link content-id="0da176396df51e828ecf3482d4" type="page.storePage.main">
+                <position>0.0</position>
+            </content-link>
+        </content-links>
+        <sitemap-included-flag site-id="SiteName">false</sitemap-included-flag>
+        <sitemap-priority site-id="SiteName">0.0</sitemap-priority>
+    </content>
+
+</library>

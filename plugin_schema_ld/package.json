@@ -1,0 +1,20 @@
+{
+  "name": "plugin_schema_ld",
+  "version": "0.0.1",
+  "description": "Structured Data ld+json",
+  "main": "index.js",
+  "scripts": {
+    "upload": "sgmf-scripts --upload -- ",
+    "uploadCartridge": "sgmf-scripts --uploadCartridge plugin_schema_ld",
+    "compile:js": "sgmf-scripts --compile js",
+    "compile:scss": "sgmf-scripts --compile css",
+    "build": "echo \"Nothing to compile plugin_schema_ld\""
+  },
+  "devDependencies": {
+    "sgmf-scripts": "^2.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 10"
+  ]
+}

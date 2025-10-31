@@ -1,0 +1,12 @@
+<isif condition="${pdict.gtmdata}">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+    <isloop items="${pdict.gtmdata}" var="data">
+        window.gtmData =
+        <isprint value="${JSON.stringify(data, null, '\t')}" encoding="off" />;
+        dataLayer.push(window.gtmData);
+    </isloop>
+
+    </script>
+</isif>

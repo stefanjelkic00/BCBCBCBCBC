@@ -1,0 +1,15 @@
+<isif condition="${pdict.schemaData}">
+    <isloop items="${pdict.schemaData}" var="schema" status="loopstatus">
+        <isif condition="${schema.length}">
+            <isloop items="${schema}" var="listItem" status="loopstatus">
+                <script type="application/ld+json">
+                    <isprint value="${JSON.stringify(listItem)}" encoding="off" />
+                </script>
+            </isloop>
+        <iselse/>
+            <script type="application/ld+json">
+                <isprint value="${JSON.stringify(schema)}" encoding="off" />
+            </script>
+        </isif>
+    </isloop>
+</isif>

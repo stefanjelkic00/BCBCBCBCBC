@@ -1,0 +1,34 @@
+image: node:24.3.0
+
+pipelines:
+  branches:
+    development:
+      - step:
+          name: Build and Deploy
+          deployment: dev
+          script:
+            - apt-get update
+            - apt-get install zip
+            - chmod +x build-and-zip.sh
+            - /bin/bash build-and-zip.sh $BITBUCKET_BUILD_NUMBER
+
+            - npm i -g sfcc-ci
+            - sfcc-ci client:auth ${CLIENTID} ${CLIENTSECRET}
+            - sfcc-ci code:deploy $BITBUCKET_BUILD_NUMBER.zip -i ${DEV_HOSTNAME}
+            - sfcc-ci code:activate $BITBUCKET_BUILD_NUMBER -i ${DEV_HOSTNAME}
+            - sfcc-ci auth:logout
+    '{staging,release/*}':
+      - step:
+          name: Build and Deploy
+          deployment: stg
+          script:
+            - apt-get update
+            - apt-get install zip
+            - chmod +x build-and-zip.sh
+            - /bin/bash build-and-zip.sh $BITBUCKET_BUILD_NUMBER
+
+            - npm i -g sfcc-ci
+            - sfcc-ci client:auth ${CLIENTID} ${CLIENTSECRET}
+            - sfcc-ci code:deploy $BITBUCKET_BUILD_NUMBER.zip -i ${STG_HOSTNAME} -c ${P12_FILE} -p ${P12_PASSWORD}
+
+            - sfcc-ci auth:logout

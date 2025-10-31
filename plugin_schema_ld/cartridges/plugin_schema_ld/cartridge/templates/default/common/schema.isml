@@ -1,0 +1,4 @@
+<isset name="structuredDataHelper" value="${require('*/cartridge/scripts/helpers/structuredDataHelper')}" scope="page" />
+<script type="application/ld+json">
+    <isprint value="${JSON.stringify(structuredDataHelper.getOtherSchema())}" encoding="off" />
+</script>
