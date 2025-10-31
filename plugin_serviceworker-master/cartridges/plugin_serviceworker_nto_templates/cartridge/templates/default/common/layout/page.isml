@@ -1,0 +1,13 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isinclude template="/components/modules" sf-toolkit="off" />
+<isif condition="${!request.httpParameterMap.swskipheader.stringValue === 'true' || !request.httpParameterMap.swskipheader.submitted}">
+    <isinclude template="common/layout/topsection">
+<iselse>
+    <isinclude template="common/layout/pwaspecifics">
+</isif>
+
+<isreplace/>
+
+<isif condition="${!request.httpParameterMap.swskipfooter.stringValue === 'true' || !request.httpParameterMap.swskipfooter.submitted}">
+    <isinclude template="common/layout/bottomsection">
+</isif>

@@ -1,0 +1,14 @@
+<meta name="theme-color" content="#21A0DF" />
+<link rel="manifest" href="/pwa-manifest.json" />
+<link rel="fetch-cache-hash" href="${URLUtils.url('Worker-GetCacheKey').toString()}" />
+
+<script>
+<iscomment> Needs to be called from template to ensure RedirectURL controller is called </iscomment>
+if ("serviceWorker" in navigator) {  navigator.serviceWorker.register("/service-worker.js"); }
+</script>
+
+<style>
+    <isinclude url="${URLUtils.staticURL('css/pwa.css')}"/>
+</style>
+<isinclude template="/globals" />
+<script src="${URLUtils.staticURL('/js/PwaMain.js')}"></script>

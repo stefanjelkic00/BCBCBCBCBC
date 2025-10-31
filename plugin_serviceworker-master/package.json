@@ -1,0 +1,58 @@
+{
+  "name": "plugin_serviceworker",
+  "version": "1.0.0",
+  "description": "This is a repository for the inoffcial service worker plugin for Storefront Reference Architecture.",
+  "main": "index.js",
+  "licence": "see in readme.md",
+  "scripts": {
+    "auth": "sfcc-ci client:auth",
+    "data:create": "node build/createsitimport.js",
+    "data:upload": "sfcc-ci instance:upload site_compiled.zip",
+    "data:import": "sfcc-ci instance:import site_compiled.zip -s",
+    "cartridge:upload": "sgmf-scripts --uploadCartridge plugin_serviceworker_sfra_templates && sgmf-scripts --uploadCartridge plugin_serviceworker",
+    "cartridge:addswtemplate": "sfcc-ci cartridge:add plugin_serviceworker_sfra_templates --position first --siteid PrepackedSolution",
+    "cartridge:addswplugin": "sfcc-ci cartridge:add plugin_serviceworker --position first --siteid PrepackedSolution",
+    "lint": "npm run lint:js",
+    "lint:js": "sgmf-scripts --lint js",
+    "watch": "sgmf-scripts --watch",
+    "webpack:watch": "webpack --config ./node_modules/sfra-webpack-builder/webpack.config.js --env.dev --watch",
+    "webpack:dev": "webpack --config ./node_modules/sfra-webpack-builder/webpack.config.js --env.dev",
+    "webpack:prod": "webpack --config ./node_modules/sfra-webpack-builder/webpack.config.js --env.dev=false",
+    "installonrefarch": "npm run auth && sfcc-ci instance:clear && npm run data:create && npm run data:upload && npm run data:import && npm run cartridge:upload && npm run cartridge:addswtemplate && npm run cartridge:addswplugin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalesforceCommerceCloud/plugin_serviceworker.git"
+  },
+  "author": "Holger Nestmann (hnestmann@salesforce.com)",
+  "bugs": {
+    "url": "https://github.com/SalesforceCommerceCloud/plugin_serviceworker/issues"
+  },
+  "homepage": "https://github.com/SalesforceCommerceCloud/plugin_serviceworker#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "cleave.js": "^1.0.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb-base": "^5.0.1",
+    "eslint-plugin-import": "^1.12.0",
+    "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.12.0",
+    "sass": "^1.69.5",
+    "postcss-loader": "^2.1.5",
+    "proxyquire": "1.7.4",
+    "sass-loader": "^7.0.3",
+    "sgmf-scripts": "^2.1.1",
+    "shelljs": "^0.7.7",
+    "sinon": "^1.17.4",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "fs-extra": "^7.0.1",
+    "jquery": "^3.4.1",
+    "minimist": "^1.2.0",
+    "sfcc-ci": "^2.6.0",
+    "stylelint": "^9.10.1"
+  }
+}

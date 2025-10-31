@@ -1,0 +1,14 @@
+<isloop items="${pdict.productSearch.productIds}" var="product">
+    <isset name="tileurl" value="${URLUtils.url('Tile-Show', 'pid', product.productID, 'swatches', true, 'ratings', true)}" scope="page"/>
+    <isset name="tilekey" value="${'Tile'+ product.productID}" scope="page"/>
+
+    <div class="col-6 col-sm-4 swcache" data-swcachekey="${tilekey}" data-swcachecontext="search" data-swcachetime="24h">
+        <isif condition="${request.httpParameterMap['sw' + tilekey].stringValue !== 'skip'}">
+            <isobject object="${product.productSearchHit}" view="searchhit">
+                <isinclude url="${tileurl}" />
+            </isobject>
+        <iselse>
+            $${'sw' + tilekey}$
+        </isif>
+    </div>
+</isloop>

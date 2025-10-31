@@ -1,0 +1,7 @@
+{
+	"__version" : "1",
+	"settings" : {
+		"http-host" : "$sandboxhost$",
+		"https-host" : "$sandboxhost$"
+	}
+}

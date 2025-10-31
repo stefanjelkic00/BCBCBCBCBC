@@ -1,0 +1,18 @@
+<span class="contextheader" style="display:none" data-cached="$swcached$" data-pagetitle="${pdict.CurrentPageMetaData.title}">Hidden</span> 
+<script type="text/javascript">
+    function deferCSS(url) {
+        var linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.href = url;
+        linkElement.type = 'text/css';
+        var targetElement = document.getElementsByTagName('link')[0];
+        targetElement.parentNode.insertBefore(linkElement, targetElement);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        deferCSS('${URLUtils.staticURL("/css/global.css")}');
+        <isloop items="${ require('*/cartridge/scripts/assets.js').styles }" var="style">
+            deferCSS('${style.src}');
+        </isloop>
+    }, false);
+</script>
+<isinclude sf-toolkit="off" template="/common/scripts" />

@@ -1,0 +1,17 @@
+<span class="api-${pdict.consentApi} ${pdict.tracking_consent == null ? '' : 'consented' } tracking-consent" 
+    data-caOnline="${pdict.caOnline}" 
+    id="swconsent"
+    data-url="${URLUtils.url('ConsentTracking-GetContent', 'cid', 'tracking_hint')}"
+    data-reject="${URLUtils.url('ConsentTracking-SetSession', 'consent', 'false')}"
+    data-accept="${URLUtils.url('ConsentTracking-SetSession', 'consent', 'true')}"
+    data-acceptText="${Resource.msg('button.consentTracking.yes', 'common', null)}"
+    data-rejectText="${Resource.msg('button.consentTracking.no', 'common', null)}"
+    data-heading="${Resource.msg('heading.consentTracking.track.consent', 'common', null)}"
+    ></span>
+<!-- Stupid hack to allow consent to be updated on cached page -->
+    <script>
+        var dialogElement = document.getElementById("swconsent");
+        if (document.cookie.indexOf('sfcc-consent=true') > -1 && dialogElement.className.indexOf('consented') === -1) {
+            dialogElement.className += " consented";
+        }
+    </script>

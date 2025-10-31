@@ -1,0 +1,16 @@
+/**
+ * This isml is returned out when /service-worker.js is called on the current host
+ * Workaround as we cannot send files in /static to arbitrary URLs
+ *
+ */
+self.serverConstructedUrls = {
+    offlineUrl: '${dw.web.URLUtils.staticURL("offline.html")}',
+    headerUrl: '${dw .web.URLUtils.https("Worker-Decorator","swskipfooter", "true")}',
+    shell: [
+        '${dw.web.URLUtils.staticURL("/css/global.css")}',
+        '${dw.web.URLUtils.staticURL("/js/PwaMain.js")}'
+    ]
+}
+importScripts('${URLUtils.staticURL("/js/sw-modules/service-worker.pagepartials.js")}');
+
+<isinclude url="${URLUtils.staticURL('/js/service-worker.js')}"/>

@@ -1,0 +1,30 @@
+<span class="contextheader" style="display:none" data-cached="$swcached$" data-pagetitle="${pdict.CurrentPageMetaData.title}">Hidden</span> 
+<isif condition="${pdict.criticalCSSTemplate}">
+    <isinclude template="${pdict.criticalCSSTemplate}">
+</isif>
+<script type="text/javascript">
+    var currentlyLoading = 0;
+    function deferCSS(url) {
+        currentlyLoading++;
+        var linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.href = url;
+        linkElement.type = 'text/css';
+        linkElement.onload = function() {
+            currentlyLoading--;
+            if (currentlyLoading === 0) {
+                // as the critical css renderer is not perfect we remove it again and let global.css take over
+                var element = document.getElementById('critical-css');
+                element.parentNode.removeChild(element);
+            }
+        }
+        var targetElement = document.getElementsByTagName('link')[0];
+        targetElement.parentNode.insertBefore(linkElement, targetElement);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        deferCSS('${URLUtils.staticURL("/css/global.css")}');
+        <isloop items="${ require('*/cartridge/scripts/assets.js').styles }" var="style">
+            deferCSS('${style}');
+        </isloop>
+    }, false);
+</script>

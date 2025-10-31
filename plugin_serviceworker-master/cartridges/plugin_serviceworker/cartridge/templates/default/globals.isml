@@ -1,0 +1,10 @@
+<script>
+<iscomment> We use a seperate namespace, to avoid interfering with any other globals </iscomment>
+window.pwa = window.pwa || {};
+
+
+// $swcached$ will be replaced in service-worker and can have values 'true' and 'maybe'
+// this value should solely be used for staging and sandboxes to determine if
+// editors are able to request a fresh version from the cache
+window.pwa.servedFromCache = '$swcached$' === 'true'; 
+</script>

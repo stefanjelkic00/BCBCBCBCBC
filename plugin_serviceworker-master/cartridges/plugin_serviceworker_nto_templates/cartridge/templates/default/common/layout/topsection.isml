@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html class="nto" lang="en">
+    <head>
+        <isinclude template="/common/htmlHead" />
+        <isactivedatahead/>
+    </head>
+    <body>
+        <div class="page" data-action="${pdict.action}" data-querystring="${pdict.queryString}" >
+            <isinclude template="/components/header/pageHeader" />

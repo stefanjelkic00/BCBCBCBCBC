@@ -1,0 +1,85 @@
+<meta charset=UTF-8>
+<link rel="preload" href="${URLUtils.staticURL('/css/global.css')}" as="style"/>
+<isloop items="${ require('*/cartridge/scripts/assets.js').styles }" var="style">
+    <link rel="preload" href="${style}"  as="style"/>
+</isloop>
+<link rel="preload" src="${URLUtils.staticURL('/js/main.js')}" as="script"/>
+<link rel="preload" src="${URLUtils.staticURL('/js/util.js')}" as="script"/>
+<isloop items="${ require('*/cartridge/scripts/assets.js').scripts }" var="script">
+    <link rel="preload" type="text/javascript" src="${script}" as="script">
+</isloop>
+
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<isif condition="${dw.system.System.getInstanceType() != dw.system.System.PRODUCTION_SYSTEM}">
+	<title>${pdict.CurrentPageMetaData.title} | ${Resource.msg('global.site.name', 'version', null)} | ${Resource.msg('global.version.number', 'version', null)}</title>
+<iselse/>
+  <title><isprint value="${pdict.CurrentPageMetaData.title}" encoding="off" /></title>
+</isif>
+<style>
+    @media (min-width:769px) {
+        .hero {
+            height: 18vw !important;
+        }
+    }
+</style>
+<link href="${URLUtils.staticURL('/images/favicon.ico')}" rel="shortcut icon" />
+<link rel="preconnect" href="https://p.cquotient.com">
+
+<meta name="description" content=" <isif condition="${!empty(pdict.CurrentPageMetaData.description)}">${pdict.CurrentPageMetaData.description}</isif> ${Resource.msg('global.storename','locale',null)}"/>
+<meta name="keywords" content=" <isif condition="${!empty(pdict.CurrentPageMetaData.keywords)}">${pdict.CurrentPageMetaData.keywords}</isif> ${Resource.msg('global.storename','locale',null)}"/>
+
+<isif condition="${request.httpParameters.containsKey('localCSS')}">
+    <link rel="stylesheet" href="/css/global.css" />
+    <isloop items="${ require('*/cartridge/scripts/assets.js').styles }" var="style">
+        <isset name="assetStyle" value="${style.replace(/\/on\/demandware\.static\/(.+?)\/css\//g, '')}" scope="page"/>
+        <link rel="stylesheet" href="/css/${assetStyle}" />
+    </isloop>
+<iselse>
+</isif>
+<isif condition="${pdict.criticalCSSTemplate}">
+    <isinclude template="${pdict.criticalCSSTemplate}">
+    <script type="text/javascript">
+        var currentlyLoading = 0;
+        function deferCSS(url) {
+            currentlyLoading++;
+            var linkElement = document.createElement('link');
+            linkElement.rel = 'stylesheet';
+            linkElement.href = url;
+            linkElement.type = 'text/css';
+            linkElement.onload = function() {
+                currentlyLoading--;
+                if (currentlyLoading === 0) {
+                    // as the critical css renderer is not perfect we remove it again and let global.css take over
+                    var element = document.getElementById('critical-css');
+                    element.parentNode.removeChild(element);
+                }
+            }
+            var targetElement = document.getElementsByTagName('link')[0];
+            targetElement.parentNode.insertBefore(linkElement, targetElement);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            deferCSS('${URLUtils.staticURL("/css/global.css")}');
+            <isloop items="${ require('*/cartridge/scripts/assets.js').styles }" var="style">
+                deferCSS('${style}');
+            </isloop>
+        }, false);
+    </script>
+<iselse>
+    <link rel="stylesheet" href="${URLUtils.staticURL('/css/global.css')}" />
+    <isloop items="${ require('*/cartridge/scripts/assets.js').styles }" var="style">
+        <link rel="stylesheet" href="${style}" />
+    </isloop>
+</isif>
+
+<isif condition="${request.httpParameters.containsKey('localCSS')}">
+    <script src="/livereload.js"></script>
+</isif>
+
+<isif condition="${'GoogleVerificationTag' in dw.system.Site.current.preferences.custom && dw.system.Site.current.preferences.custom.GoogleVerificationTag!=''}">
+    <meta name="google-site-verification" content="<isprint value="${dw.system.Site.current.preferences.custom.GoogleVerificationTag}"/>" />
+</isif>
+
+${dw.system.HookMgr.callHook('app.template.htmlHead', 'htmlHead') || ''}

@@ -1,0 +1,18 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<isinclude template="/components/modules" sf-toolkit="off" />
+<isif condition="${!pdict.parameters.skipheader}">
+    <isinclude template="common/layout/topsection">
+    <isif condition="${pdict.empty}">
+        <div class="lds-dual-ring"></div>
+    </isif>
+<iselse>
+    <script>document.querySelector('.lds-dual-ring').parentNode.removeChild(document.querySelector('.lds-dual-ring'))</script>
+    <isinclude template="common/layout/pwaspecifics">
+</isif>
+
+<isreplace/>
+
+<isif condition="${!pdict.parameters.skipfooter}">
+    <isinclude template="common/layout/bottomsection">
+</isif>
